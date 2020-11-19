@@ -132,7 +132,7 @@ class NNFT(IconScoreBase, TokenStandard):
         is the current owner. Throws if _to is the zero address. 
         Throws if _tokenId is not a valid NFT.
         """
-        if self.ownerOf(_tokenId) != self.msg.sender:
+        if self._tokenApprovals[_tokenId] != self.msg.sender:
             revert("You don't have permission to transfer this NFT")
         self._transfer(self.msg.sender, _to, _tokenId)
 
